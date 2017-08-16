@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <style type="text/css">
+		.mask{
+		    height: 100%;
+		    width: 100%;
+		    background:#e8e8e8;
+		    opacity: 0.5;
+		    margin: 0px auto;
+		    position: absolute;
+		    z-index: 1000;
+		    top: 0;
+		}   
+		.apple-icon{
+		    width: 29px;
+		}
+		.down-time-container{
+		    position: absolute;
+		    margin-left: 22%;
+		    margin-top: 12%;
+		}
+		.down-time,.down-time-details{
+		    text-align : center;    
+		}
+		.istTxt{
+		    font-family: MyriadPro,Helvetica Neue;
+		    font-size: 1.6em;
+		    position: absolute;
+		    top:3px;    
+		    font-weight: 400;
+		}
+		.app-name{
+		    font-family: MyriadPro,Helvetica Neue;
+		    font-size: 2em;
+		    margin-top: 1.2%;
+		}
+		.downtime{
+		    font-family: MyriadPro,Helvetica Neue;
+		    font-size: 1.2em;
+		    margin-top: 2%;
+		    font-weight: 400;
+		}
+		.line{
+		    width: 113%;
+		    height: 2px;
+		    border: 1px;
+		    background: linear-gradient(to bottom right, red, yellow);
+		    margin: 3% 0 4% 0;
+		    position: relative;
+		    right: 5%
+		}
+		.appName-unavil{
+		    font-family: MyriadPro,Helvetica Neue;
+		    font-size: 1.2em;
+		    font-weight: 400;
+		}
+		.time{
+		    font-family: MyriadPro,Helvetica Neue;
+		    font-size: 1.4em;
+		    font-weight: 400;
+		    margin: 2%;
+		}
+		.contact{
+		    margin: 3%;
+		    font-family: MyriadPro,Helvetica Neue;
+		    font-size: 1em;
+		    font-weight: 400;
+		}
+    </style>
+    <style type="text/css">
+        body{
+            overflow: hidden;
+        }
+        .collapse{
+            left: -150px;
+        }
+        .open{
+            left: 0;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            background-color: black;
+            width: 200px;
+            z-index: 1;
+        }
+        .navContainer{
+            width: 0;
+            height: 0;
+            position: absolute;
+            z-index: 1;
+            left: -150px;          
+        }
+        .opac{
+            opacity: .7;
+            background-color: #929292;
+            height: 100%;
+        }
+        .slideIn{
+            display: block;
+            left: 0;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            background-color: black;
+            width: 200px;
+            z-index: 1;
+            -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+            -webkit-animation-duration: .1s; /* Safari 4.0 - 8.0 */
+            animation-name: example;
+            animation-duration: .1s;
+        }
+        @-webkit-keyframes example {
+            from {width: 0px;}
+            to {width: 200px;}
+        } 
+        @keyframes example {
+            from {width: 0px;}
+            to {width: 200px;}
+        }
+        .slideOut{
+            display: none;
+            height: 0;
+            width: 0;
+            left: -150px;
+            text-indent: -200px;
+            -webkit-animation-name: collapseNav; /* Safari 4.0 - 8.0 */
+            -webkit-animation-duration: .01s; /* Safari 4.0 - 8.0 */
+            animation-name: collapseNav;
+            animation-duration: .01s;
+        }
+        @-webkit-keyframes collapseNav {
+            from {left: 0px;}
+            to {left: -150px;}
+        } 
+        @keyframes collapseNav {
+            from {left: 0px;}
+            to {left: -150px;}
+        }
+        .circle {
+            width: 50px;
+            height: 50px;
+            background: white;
+            padding: 10px;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+        .listContainer{
+            background-color: white;
+            height: 100%;
+        }
+        .listContainer ul{
+            list-style: none;
+            padding: 0;
+        }
+        .listContainer li{
+            line-height: 50px;
+            padding: 5px;
+        }
+        .listContainer li i{
+            margin-right: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <body ng-app="app" ng-controller="indexCtrl">
+        <div ng-include="'./views/header.html'"></div>
+        <div ng-include="'./views/sidenav.html'"></div>
+        <div ng-view id="container" style="height: 100%;" ng-click="navCollapse()">
+        </div>
+    </body>
+</html>
